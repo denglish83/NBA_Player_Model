@@ -23,7 +23,9 @@ for player in nba_players:
     id = player['id']
     print(id)
     career = playercareerstats.PlayerCareerStats(player_id=id)
-    print(career.get_data_frames()[0])
+    career_df = career.get_data_frames()[0]
+    career_df['PLayer_Name'] = player['full_name']
+    print(career_df)
     count = count+1
     if count > limit:
         break

@@ -44,11 +44,11 @@ print('Creating player season Level Table')
 
 sql_text = """
 
-create table fantasy_basketball.Season_level_stats AS
+create table Season_level_stats AS
 SELECT plyr_stat.*,
         plyr.birthdate,
         team.first_game,
-        TIMESTAMPDIFF(YEAR, plyr.birthdate, team.first_game) as season_start_age,
+        ceiling(datediff(team.first_game, plyr.birthdate)/365) as season_start_age,
         (team.num_wins/team.num_games) as team_win_pct
 FROM (
     SELECT season, 
